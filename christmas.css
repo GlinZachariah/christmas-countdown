@@ -49,6 +49,7 @@ td{
   animation-iteration-count: 1;
   animation-duration: 10s;
   animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }
 
 @keyframes falling {

@@ -135,35 +135,13 @@ Created by potrace 1.16, written by Peter Selinger 2001-2019
     createSnowflake();
   });
 
-  //  snowflake.addEventListener("animationiteration", () => {
-  //   // Reset snowflake position at the top when it reaches the bottom
-  //   snowflake.style.left = `${Math.random() * window.innerWidth}px`;
-  //   snowflake.style.opacity = 1;
-  // });
-
-  // snowflake.addEventListener("animationiteration", () => {
-  //   // Reset snowflake position at the top when it reaches the bottom
-  //   snowflake.style.left = `${Math.random() * window.innerWidth}px`;
-  //   snowflake.style.top = '-5px'; // Move it to the top
-  //   snowflake.style.opacity = 1;
-  // });
-
-  // // Immediately start the falling animation
-  // requestAnimationFrame(() => {
-  //   snowflake.style.transition = 'top 10s linear, left 10s linear'; // Adjust animation duration here
-  //   snowflake.style.top = `${window.innerHeight + 5}px`;
-  // });
-
-}
-
-function startSnowfall() {
-	// Randomly change the snow generation interval
   const newInterval = Math.random() * 2000 + 500; 
    clearInterval(intervalId);
-  intervalId = setInterval(createSnowflake, newInterval); // Create a new snowflake every half second
+  intervalId = setInterval(createSnowflake, newInterval);
+
 }
 
-let intervalId = setInterval(startSnowfall, 500);
+let intervalId = setInterval(createSnowflake, 500);
 
 </script>
 </body>

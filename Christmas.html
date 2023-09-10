@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Christmas Goals</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="christmas.css">
+</head>
+<body>
+	<div id="snow-container"></div>
+	<div id="banner">
+		<table>
+			<thead>
+				<th id="days"></th>
+				<th id="hours"></th>
+				<th id="mins"></th>
+				<th id="sec"></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Days</td>
+					<td>Hours</td>
+					<td>Minutes</td>
+					<td>Seconds</td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<h3 id="title">CHRISTMAS</h3>
+	</div>
+
+
+	<script type="text/javascript">
+	function getTimeLeftForChristmas() {
+  const now = new Date();
+  const christmas = new Date(now.getFullYear(), 11, 25); // December is month 11 (0-based index)
+  
+  // Check if Christmas has already passed this year
+  if (now > christmas) {
+    christmas.setFullYear(now.getFullYear() + 1); // Set it to next year
+  }
+
+  const timeLeft = christmas - now;
+
+  const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+  const formattedTimeLeft = `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+  const countdownElementDays = document.getElementById("days");
+
+  if (countdownElementDays) {
+    countdownElementDays.textContent = `${String(days).padStart(2, '0')}`;
+  }
+
+  const countdownElementHours = document.getElementById("hours");
+
+  if (countdownElementHours) {
+    countdownElementHours.textContent = `${String(hours).padStart(2, '0')}`;
+  }
+
+  const countdownElementMins = document.getElementById("mins");
+
+  if (countdownElementMins) {
+    countdownElementMins.textContent = `${String(minutes).padStart(2, '0')}`;
+  }
+
+  const countdownElementSec = document.getElementById("sec");
+
+  if (countdownElementSec) {
+    countdownElementSec.textContent = `${String(seconds).padStart(2, '0')}`;
+  }
+
+
+  return formattedTimeLeft;
+}
+
+function updateCountdown() {
+  const timeLeftForChristmas = getTimeLeftForChristmas();
+  // const countdownElement = document.getElementById("christmas-date");
+
+  // if (countdownElement) {
+  //   countdownElement.textContent = timeLeftForChristmas;
+  // }
+}
+
+// Update the countdown every second
+setInterval(updateCountdown, 1000);
+
+
+
+
+
+
+</script>
+
+
+
+<script >
+function createSnowflake() {
+  const snowflake = document.createElement("div");
+  snowflake.classList.add("snowflake");
+
+  const size = Math.random() * 10 + 5; // Random size between 5 and 15 pixels
+  snowflake.style.width = `${size}px`;
+  snowflake.style.height = `${size}px`;
+
+  const startX = Math.random() * window.innerWidth; // Random horizontal position
+  snowflake.style.left = `${startX}px`;
+
+  const snowflakeSVG = `
+     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="100" height="100" viewBox="0 0 600.000000 600.000000" preserveAspectRatio="xMidYMid meet">
+<metadata>
+Created by potrace 1.16, written by Peter Selinger 2001-2019
+</metadata>
+<g transform="translate(0.000000,350.000000) scale(0.100000,-0.100000)" fill="#fff" stroke="none">
+
+<path d="M4040 2988 c-12 -13 -46 -66 -75 -118 -30 -52 -59 -101 -63 -108 -7 -10 -18 1 -43 44 -19 32 -37 67 -41 76 -4 10 -19 23 -32 29 -20 10 -30 9 -51 -5 -37 -24 -32 -63 20 -151 l44 -75 -155 0 -154 0 -12 -25 c-9 -21 -8 -28 7 -45 17 -19 31 -20 197 -20 110 0 178 -4 178 -10 0 -5 14 -32 30 -58 17 -27 30 -52 30 -56 0 -3 -84 -6 -188 -6 -203 0 -232 -7 -232 -54 0 -44 11 -46 255 -46 l232 0 14 -27 c7 -16 24 -45 36 -65 l23 -38 -108 0 c-118 0 -152 -12 -152 -54 0 -48 24 -56 182 -56 l144 0 23 -45 c12 -24 26 -47 32 -50 5 -4 9 -13 9 -21 0 -13 -21 -15 -131 -13 -71 0 -132 -1 -135 -4 -2 -2 25 -54 61 -115 36 -61 65 -113 65 -116 0 -3 -31 -6 -69 -6 -76 0 -70 -5 -128 100 -96 172 -107 183 -149 155 -24 -16 -34 -67 -15 -79 5 -3 19 -25 31 -48 12 -24 33 -62 47 -86 l25 -43 -76 3 c-71 3 -79 5 -91 28 -8 14 -41 70 -73 125 -32 55 -61 107 -65 115 -26 56 -69 117 -90 130 -23 13 -28 13 -46 -4 -30 -27 -26 -52 20 -131 22 -39 51 -88 63 -110 13 -22 38 -66 55 -97 l33 -58 -74 0 -74 0 -23 43 c-12 23 -31 56 -41 72 -19 31 -40 68 -81 143 -25 44 -52 59 -88 47 -28 -9 -38 -51 -17 -74 9 -10 16 -20 16 -23 0 -4 20 -41 45 -82 25 -42 45 -79 45 -83 0 -4 7 -15 17 -25 15 -17 12 -18 -85 -18 -98 0 -102 -1 -119 -26 -15 -24 -15 -28 0 -52 15 -26 20 -27 119 -32 62 -3 98 -8 90 -13 -7 -5 -17 -19 -23 -30 -5 -12 -13 -29 -19 -37 -42 -64 -100 -170 -100 -182 0 -21 33 -48 57 -48 23 0 43 20 69 70 11 19 46 81 79 138 l60 102 73 0 73 0 -30 -52 c-16 -29 -36 -64 -43 -78 -7 -14 -26 -44 -41 -67 -15 -24 -27 -45 -27 -48 0 -3 -12 -24 -26 -46 -42 -67 -18 -126 41 -104 18 7 38 32 63 80 20 39 39 72 42 75 7 7 80 130 80 136 0 2 14 26 31 54 l31 50 74 0 74 0 -22 -37 c-11 -21 -31 -58 -44 -82 -13 -24 -29 -50 -35 -57 -19 -24 -6 -68 23 -78 33 -12 61 10 93 71 11 21 39 71 63 111 l43 72 69 0 c82 0 82 9 -2 -133 -32 -53 -58 -99 -58 -102 0 -3 61 -5 135 -5 74 0 135 -3 135 -6 0 -4 -13 -29 -30 -56 -16 -26 -30 -53 -30 -58 0 -6 -58 -10 -149 -10 -162 0 -181 -6 -181 -55 0 -37 28 -45 149 -45 61 0 111 -3 110 -7 0 -5 -17 -35 -38 -68 l-38 -60 -228 -3 c-148 -1 -233 -6 -242 -13 -17 -14 -17 -55 0 -66 6 -4 103 -10 214 -13 l201 -5 -36 -62 -37 -63 -171 0 c-157 0 -172 -2 -192 -20 -25 -23 -27 -33 -12 -61 10 -17 23 -19 165 -19 l154 0 -45 -76 c-53 -89 -56 -129 -12 -153 25 -14 29 -14 51 7 13 12 33 41 45 65 12 23 30 53 41 66 l18 24 39 -69 c22 -38 44 -78 51 -89 7 -11 15 -27 19 -35 23 -51 75 -75 102 -48 16 16 15 59 -2 83 -7 11 -25 43 -41 70 -15 28 -45 80 -66 117 -21 36 -39 71 -39 77 0 16 61 121 70 121 4 0 10 -8 14 -18 3 -9 10 -24 15 -32 23 -33 131 -221 131 -226 0 -3 9 -19 21 -35 27 -39 74 -41 91 -4 14 32 4 54 -154 318 -32 55 -58 103 -58 107 0 13 63 120 71 120 4 0 30 -41 58 -90 58 -100 80 -119 117 -99 27 14 32 53 10 84 -7 11 -24 40 -38 65 -14 25 -39 70 -56 100 l-31 55 36 62 37 62 24 -42 c13 -23 38 -67 55 -97 16 -30 35 -63 41 -72 11 -19 36 -25 36 -9 0 5 29 57 63 115 l64 106 22 -45 c12 -24 26 -47 32 -50 18 -12 8 -47 -34 -118 -70 -119 -87 -153 -87 -181 0 -29 31 -50 60 -41 18 6 120 162 120 184 0 30 21 13 54 -44 l37 -63 -25 -43 c-27 -49 -141 -246 -156 -269 -46 -73 -51 -92 -35 -116 26 -40 69 -33 100 16 14 22 25 42 25 46 0 3 26 50 58 103 31 53 63 108 71 124 8 15 17 27 20 27 7 0 71 -108 71 -120 0 -5 -21 -44 -46 -87 -26 -43 -64 -111 -86 -151 -38 -70 -39 -74 -24 -97 28 -42 61 -33 100 28 30 47 75 126 101 177 5 11 13 20 16 20 4 0 28 -36 53 -79 49 -86 73 -102 110 -77 40 25 37 49 -14 138 l-47 83 145 3 c152 3 172 8 172 47 0 49 -23 55 -207 55 l-171 0 -23 38 c-29 47 -49 83 -49 88 0 2 90 4 199 4 168 0 202 2 215 16 19 18 20 28 6 55 -10 18 -24 19 -246 19 -234 0 -235 0 -244 23 -6 12 -21 40 -35 62 -13 22 -24 43 -25 48 0 4 52 7 115 7 111 0 115 1 131 25 15 23 15 27 0 50 -16 25 -18 25 -165 25 l-148 0 -14 28 c-7 15 -24 44 -36 65 l-23 37 135 0 c101 0 135 3 135 13 0 6 -29 60 -65 120 l-64 107 73 0 74 0 25 -42 c14 -24 37 -65 52 -93 53 -97 67 -115 91 -121 26 -7 64 18 64 42 0 13 -45 100 -87 166 -13 21 -23 40 -23 43 0 3 34 5 76 3 l76 -3 33 -60 c94 -170 185 -321 197 -329 8 -5 27 -6 41 -2 43 10 44 46 5 113 -18 32 -36 64 -41 73 -4 8 -16 29 -27 45 -11 17 -24 40 -29 52 -6 12 -22 40 -36 62 -14 22 -25 43 -25 46 0 3 33 5 73 5 l72 -1 50 -87 c28 -47 53 -93 58 -102 4 -8 16 -28 27 -45 11 -16 23 -38 26 -48 8 -22 46 -32 73 -17 31 16 26 56 -14 123 -46 77 -95 165 -95 171 0 4 39 6 86 6 103 0 124 9 124 53 0 50 -13 57 -117 57 -55 0 -93 4 -93 10 0 5 30 59 66 120 67 114 77 152 43 173 -34 21 -63 0 -109 -80 -25 -43 -50 -87 -57 -98 -7 -11 -25 -44 -40 -72 l-27 -53 -73 0 c-40 0 -73 3 -73 6 0 4 14 29 30 56 17 26 30 50 30 53 0 2 26 48 59 102 32 54 62 108 66 121 9 29 -18 72 -45 72 -20 0 -71 -60 -93 -110 -11 -23 -115 -206 -137 -240 -6 -8 -14 -25 -20 -37 -9 -21 -16 -23 -85 -23 -41 0 -75 3 -75 6 0 3 19 38 43 77 71 119 72 124 57 151 -7 14 -19 27 -27 30 -34 13 -59 -19 -161 -204 l-30 -55 -76 -3 -76 -3 60 101 c92 156 97 146 -65 142 l-135 -3 26 48 c15 26 32 56 38 66 10 15 29 17 158 17 145 0 148 0 163 24 14 20 14 29 4 48 -19 36 -27 38 -141 38 -104 0 -120 4 -98 26 6 6 21 31 34 55 l24 44 233 3 c206 2 234 4 245 20 19 24 17 39 -6 62 -19 19 -33 20 -215 20 l-195 0 27 48 c14 26 31 55 37 64 9 15 33 18 190 20 195 3 206 7 192 61 l-6 27 -155 0 c-143 0 -154 1 -148 18 3 9 12 24 18 32 7 8 27 41 44 73 30 55 31 60 17 82 -19 29 -49 39 -74 26 -11 -6 -39 -44 -63 -86 -23 -41 -46 -72 -50 -68 -6 7 -94 157 -126 215 -20 37 -50 42 -79 13 -23 -23 -24 -27 -10 -58 7 -18 25 -52 40 -75 14 -23 26 -44 26 -47 0 -3 12 -24 27 -48 38 -58 63 -105 63 -116 0 -6 -15 -35 -34 -67 l-34 -56 -15 23 c-30 47 -137 231 -137 235 0 2 -11 22 -25 44 -21 34 -31 40 -58 40 -25 0 -37 -6 -47 -24 -11 -22 -8 -31 32 -98 24 -40 47 -80 51 -88 4 -8 16 -28 26 -45 11 -16 28 -46 39 -65 10 -19 31 -56 45 -81 24 -41 26 -49 14 -70 -30 -55 -59 -99 -66 -99 -4 0 -12 12 -18 28 -16 36 -52 99 -81 140 -36 49 -92 40 -92 -16 0 -14 29 -76 65 -140 36 -63 65 -119 65 -125 0 -5 -13 -32 -30 -59 -16 -26 -30 -54 -30 -61 0 -6 -16 15 -35 48 -20 33 -40 67 -45 75 -5 8 -19 34 -31 58 -13 23 -28 42 -34 42 -6 0 -22 -19 -36 -42 -13 -24 -28 -51 -34 -60 -5 -9 -23 -41 -39 -72 -17 -30 -31 -54 -32 -53 -1 1 -18 30 -38 65 l-35 63 39 65 c22 35 40 66 40 69 0 3 14 27 31 55 38 61 37 100 -3 114 -22 8 -32 6 -49 -10 -12 -10 -25 -28 -30 -39 -21 -45 -78 -140 -86 -142 -5 -2 -19 17 -32 42 -12 24 -26 47 -32 50 -18 12 -8 39 51 137 33 54 60 101 60 103 0 2 22 41 50 87 66 110 65 148 -5 148 -27 0 -35 -6 -54 -42 -32 -62 -161 -281 -170 -291 -8 -8 -53 62 -66 102 -6 20 5 50 35 96 11 17 23 37 27 45 4 8 26 48 50 88 48 82 53 114 21 136 -29 21 -33 20 -58 -6z m420 -941 c0 -4 11 -25 25 -47 14 -22 25 -44 25 -49 0 -5 -17 -37 -37 -71 l-36 -62 -19 24 c-10 12 -28 42 -40 66 -24 47 -25 44 36 150 17 30 19 31 32 15 7 -10 14 -21 14 -26z m-203 -159 c12 -15 73 -127 73 -134 0 -2 -35 -4 -78 -4 l-77 0 -28 45 c-15 25 -27 50 -27 54 0 5 -7 14 -15 21 -8 7 -15 16 -15 21 0 14 156 11 167 -3z m510 -10 c-7 -13 -25 -42 -40 -65 -15 -24 -27 -47 -27 -53 0 -6 -32 -10 -80 -10 -44 0 -80 3 -80 6 0 4 17 38 37 75 l37 69 83 0 c82 0 82 0 70 -22z m-438 -245 c0 -5 -9 -21 -19 -38 -11 -16 -27 -45 -36 -62 l-16 -33 -84 0 -83 0 42 70 42 70 77 0 c43 0 78 -3 77 -7z m404 -58 c20 -35 37 -66 37 -70 0 -3 -36 -5 -81 -3 l-80 3 -34 60 c-19 33 -34 63 -35 68 0 4 35 7 78 7 l77 0 38 -65z m-267 -50 c15 -27 32 -57 37 -66 7 -12 0 -33 -28 -84 l-38 -67 -18 23 c-24 31 -59 97 -59 111 0 13 70 141 75 136 2 -2 15 -25 31 -53z"/>
+</g>
+</svg>
+  `;
+
+  snowflake.innerHTML = snowflakeSVG;
+
+  document.getElementById("snow-container").appendChild(snowflake);
+
+  snowflake.addEventListener("animationiteration", () => {
+    // Remove snowflake when it reaches the bottom and restarts the animation
+    snowflake.remove();
+    createSnowflake();
+  });
+
+  //  snowflake.addEventListener("animationiteration", () => {
+  //   // Reset snowflake position at the top when it reaches the bottom
+  //   snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+  //   snowflake.style.opacity = 1;
+  // });
+
+  // snowflake.addEventListener("animationiteration", () => {
+  //   // Reset snowflake position at the top when it reaches the bottom
+  //   snowflake.style.left = `${Math.random() * window.innerWidth}px`;
+  //   snowflake.style.top = '-5px'; // Move it to the top
+  //   snowflake.style.opacity = 1;
+  // });
+
+  // // Immediately start the falling animation
+  // requestAnimationFrame(() => {
+  //   snowflake.style.transition = 'top 10s linear, left 10s linear'; // Adjust animation duration here
+  //   snowflake.style.top = `${window.innerHeight + 5}px`;
+  // });
+
+}
+
+function startSnowfall() {
+	// Randomly change the snow generation interval
+  const newInterval = Math.random() * 2000 + 500; 
+   clearInterval(intervalId);
+  intervalId = setInterval(createSnowflake, newInterval); // Create a new snowflake every half second
+}
+
+let intervalId = setInterval(startSnowfall, 500);
+
+</script>
+</body>
+</html>

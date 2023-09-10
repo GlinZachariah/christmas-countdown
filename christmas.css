@@ -1,0 +1,68 @@
+#banner{
+	width: 100%;
+	height: 100vh;
+	background-color: rgb(177,30,49);
+}
+
+body{
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	overflow: hidden;
+}
+
+table{
+	    width: max-content;
+    padding-left: 6.5vw; 
+    padding-right: 6.5vw; 
+    padding-top: 25vh;
+    margin: auto;
+    text-align: center;
+    font-size: 3vw;
+    color: white;
+
+}
+
+th,td{
+	text-align: center;
+	padding: 2.5rem
+}
+
+td{
+	font-weight: 300;
+}
+
+#title{
+	color: #fff;
+	text-align: center;
+	font-weight: 300;
+	font-size: 5vw;
+}
+
+.snowflake {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  animation: falling 10s linear infinite;
+  animation-iteration-count: 1;
+  animation-duration: 10s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes falling {
+  0% {
+    transform: translateY(-5px) rotate(0deg);
+    opacity: 1;
+  }
+  
+  94% {
+    transform: translateY(94vh) rotate(0deg);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translateY(0vh) rotate(0deg);
+    opacity: 0;
+  }
+}
